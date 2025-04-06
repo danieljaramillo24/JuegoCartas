@@ -28,14 +28,14 @@ public class FrmJuego extends JFrame {
         setTitle("Juego de Cartas");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        pnlJugador1.setBackground(new Color(153, 255, 51));
+        pnlJugador1.setBackground(new Color(51,204,255));
         pnlJugador1.setLayout(null);
-        pnlJugador2.setBackground(new Color(0, 255, 255));
+        pnlJugador2.setBackground(new Color(102,255,102));
         pnlJugador2.setLayout(null);
 
         tpJugadores.setBounds(10, 40, 550, 170);
-        tpJugadores.addTab("Martín Estrada Contreras", pnlJugador1);
-        tpJugadores.addTab("Raul Vidal", pnlJugador2);
+        tpJugadores.addTab("Alejandra Toro Grisales", pnlJugador1);
+        tpJugadores.addTab("Daniel Jaramillo Bustamante", pnlJugador2);
 
         btnRepartir.setBounds(10, 10, 100, 25);
         btnRepartir.setText("Repartir");

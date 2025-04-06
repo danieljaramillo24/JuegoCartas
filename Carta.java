@@ -12,7 +12,6 @@ public class Carta {
     private int indice;
 
     public Carta(Random r) {
-        // el indice de la carta debe ser un numero al azar entre 1 y 52
         indice = r.nextInt(52) + 1;
     }
 
@@ -33,6 +32,7 @@ public class Carta {
             }
         });
     }
+
 
     public Pinta getPinta() {
         if (indice <= 13) {
