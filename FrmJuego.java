@@ -32,7 +32,7 @@ public class FrmJuego extends JFrame {
 
         pnlJugador1.setBackground(new Color(51, 204, 255));
         pnlJugador1.setLayout(null);
-        pnlJugador2.setBackground(new Color(102, 255, 102));
+        pnlJugador2.setBackground(new Color(255, 87, 51));
         pnlJugador2.setLayout(null);
 
         tpJugadores.setBounds(10, 40, 550, 170);
