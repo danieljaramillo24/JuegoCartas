@@ -1,6 +1,5 @@
 import java.util.HashSet;
 import java.util.Random;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.swing.JPanel;
@@ -18,7 +17,6 @@ public class Jugador {
         for (int i = 0; i < TOTAL_CARTAS; i++) {
             cartas[i] = new Carta(r);
         }
-        System.out.println("Hello World!");
     }
 
     public void mostrar(JPanel pnl) {
