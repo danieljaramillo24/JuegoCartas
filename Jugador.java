@@ -40,6 +40,7 @@ public class Jugador {
         return contadores;
     }
     
+    //Método para obtener las posibles escaleras que haya en el maso
     public String getEscalera(){
         int cartasNumero = NombreCarta.values().length;
         int pintas = Pinta.values().length;
