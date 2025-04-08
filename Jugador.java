@@ -1,4 +1,3 @@
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
@@ -44,7 +43,7 @@ public class Jugador {
     public String getEscalera(){
         int cartasNumero = NombreCarta.values().length;
         int pintas = Pinta.values().length;
-        //Se usará un set para evitar la duplicación de cartas
+        //Se usará un set para evitar la duplicación de cartas y mantener orden con el linkedhashset
         Set<String> cartasUnicas = new LinkedHashSet<>();
         String mensajeEscalera = "";
         String[][] agrupacionesCartas = new String[pintas][cartasNumero];
