@@ -13,6 +13,7 @@ public class FrmJuego extends JFrame {
 
     private JButton btnRepartir;
     private JButton btnVerificar;
+    private JButton btnCalcularPuntaje;
     private JPanel pnlJugador1;
     private JPanel pnlJugador2;
     private JTabbedPane tpJugadores;
@@ -20,6 +21,7 @@ public class FrmJuego extends JFrame {
     public FrmJuego() {
         btnRepartir = new JButton();
         btnVerificar = new JButton();
+        btnCalcularPuntaje = new JButton();
         tpJugadores = new JTabbedPane();
         pnlJugador1 = new JPanel();
         pnlJugador2 = new JPanel();
@@ -28,9 +30,9 @@ public class FrmJuego extends JFrame {
         setTitle("Juego de Cartas");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        pnlJugador1.setBackground(new Color(51,204,255));
+        pnlJugador1.setBackground(new Color(51, 204, 255));
         pnlJugador1.setLayout(null);
-        pnlJugador2.setBackground(new Color(102,255,102));
+        pnlJugador2.setBackground(new Color(255, 87, 51));
         pnlJugador2.setLayout(null);
 
         tpJugadores.setBounds(10, 40, 550, 170);
@@ -53,10 +55,20 @@ public class FrmJuego extends JFrame {
             }
         });
 
+        btnCalcularPuntaje.setBounds(230, 10, 130, 25);
+        btnCalcularPuntaje.setText("Calcular puntaje");
+        btnCalcularPuntaje.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                btnCalcularPuntajeClick(evt);
+            }
+        });
+
+
         getContentPane().setLayout(null);
         getContentPane().add(tpJugadores);
         getContentPane().add(btnRepartir);
         getContentPane().add(btnVerificar);
+        getContentPane().add(btnCalcularPuntaje);
     }
 
     Jugador jugador1 = new Jugador();
@@ -82,4 +94,15 @@ public class FrmJuego extends JFrame {
         }
     }
 
+    private void btnCalcularPuntajeClick(ActionEvent evt) {
+        switch (tpJugadores.getSelectedIndex()) {
+            case 0:
+                JOptionPane.showMessageDialog(null, "El puntaje del jugador es: " + jugador1.calcularPuntaje());
+                break;
+            case 1:
+                JOptionPane.showMessageDialog(null, "El puntaje del jugador es: " + jugador2.calcularPuntaje());
+                break;
+        }
+    }
+    
 }

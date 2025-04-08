@@ -32,6 +32,14 @@ public class Jugador {
         pnl.repaint();
     }
 
+    public int[] contarCartas() {
+        int[] contadores = new int[NombreCarta.values().length];
+        for (Carta carta : cartas) {
+            contadores[carta.getNombre().ordinal()]++;
+        }
+        return contadores;
+    }
+    
 
     public String getGrupos() {
         String mensaje = "No se encontraron grupos";
@@ -40,10 +48,7 @@ public class Jugador {
         //Se usará un set para evitar la duplicación de cartas
         Set<String> cartasUnicas = new HashSet<>();
         String mensajeEscalera = "";
-        int[] contadores = new int[NombreCarta.values().length];
-        for (Carta carta : cartas) {
-            contadores[carta.getNombre().ordinal()]++;
-        }
+        int[] contadores = contarCartas();
 
         String[][] agrupacionesCartas = new String[pintas][cartasNumero];
         //Este for toma cada carta y la mete dentro de la posición que le corresponde en cada pinta
@@ -90,4 +95,32 @@ public class Jugador {
         return mensaje;
     }
 
+    public int calcularPuntaje() {
+        int puntaje = 0;
+    
+        int[] contadores = contarCartas();
+    
+        for (Carta carta : cartas) {
+            int cantidad = contadores[carta.getNombre().ordinal()];
+            if (cantidad == 1) { // Solo cuentan las que no están en grupo (Cartas no duplicadas)
+                
+                // Creamos un switch para definir el valor por defecto (10), para acumular si se trata de cartas alfanuméricas, y el valor de su posición ordinal + 1 si se trata de una carta numérica.
+                switch (carta.getNombre()) {
+                    case AS:
+                    case JACK:
+                    case QUEEN:
+                    case KING:
+                        puntaje += 10;
+                        break;
+                    default:
+                        puntaje += carta.getNombre().ordinal() + 1;
+                        break;
+                }
+            }
+        }
+    
+        return puntaje;
+    }
+
 }
+
