@@ -18,6 +18,7 @@ public class Jugador {
         for (int i = 0; i < TOTAL_CARTAS; i++) {
             cartas[i] = new Carta(r);
         }
+        System.out.println("Hello World!");
     }
 
     public void mostrar(JPanel pnl) {
@@ -121,6 +122,7 @@ public class Jugador {
     
         return puntaje;
     }
+
 
 }
 
