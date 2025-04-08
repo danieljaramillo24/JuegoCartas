@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -39,16 +40,12 @@ public class Jugador {
         return contadores;
     }
     
-
-    public String getGrupos() {
-        String mensaje = "No se encontraron grupos";
-        int pintas = Pinta.values().length;
+    public String getEscalera(){
         int cartasNumero = NombreCarta.values().length;
+        int pintas = Pinta.values().length;
         //Se usará un set para evitar la duplicación de cartas
-        Set<String> cartasUnicas = new HashSet<>();
+        Set<String> cartasUnicas = new LinkedHashSet<>();
         String mensajeEscalera = "";
-        int[] contadores = contarCartas();
-
         String[][] agrupacionesCartas = new String[pintas][cartasNumero];
         //Este for toma cada carta y la mete dentro de la posición que le corresponde en cada pinta
         for(Carta carta : cartas){
@@ -56,21 +53,34 @@ public class Jugador {
         }
         //Este doble ciclo for se encarga de recorrer la matriz de pintas y encontrar si hay escaleras
         for (int i=0;i<pintas;i++){
-            for (int j=1;j<cartasNumero-1;j++) {
-                if((agrupacionesCartas[i][j-1]!=null && agrupacionesCartas[i][j]!=null) || (agrupacionesCartas[i][j]!=null && agrupacionesCartas[i][j+1]!=null)){
+            for (int j=1;j<cartasNumero;j++) {
+                //Se verifica que la carta anterior y la siguiente estén
+                if(agrupacionesCartas[i][j-1]!=null && agrupacionesCartas[i][j]!=null){
                     cartasUnicas.add(agrupacionesCartas[i][j-1]);
                     cartasUnicas.add(agrupacionesCartas[i][j]);
-                    cartasUnicas.add(agrupacionesCartas[i][j+1]);
+                    //Se verifica si ya hay un conjunto de escaleras y la siguiente carta no pertenece al conjunto
+                    if(j<cartasNumero-1 && agrupacionesCartas[i][j]!=null && agrupacionesCartas[i][j+1]==null){
+                        mensajeEscalera+= cartasUnicas.toString() + " de " + Pinta.values()[i] + " conforman un " + Grupo.values()[cartasUnicas.size()] + " de " + Pinta.values()[i] + "\n";
+                        cartasUnicas.clear();
+                    }
                 }
             }
             //Verifica que haya escaleras en las pintas
             if(!cartasUnicas.isEmpty()){
-                cartasUnicas.remove(null);
                 mensajeEscalera+= cartasUnicas.toString() + " de " + Pinta.values()[i] + " conforman un " + Grupo.values()[cartasUnicas.size()] + " de " + Pinta.values()[i] + "\n";
                 cartasUnicas.clear();
             }
  
         }
+        return mensajeEscalera;
+    }
+
+    public String getGrupos() {
+        String mensaje = "No se encontraron grupos";
+        
+        int[] contadores = contarCartas();
+
+
 
         boolean hayGrupos = false;
         for (int contador : contadores) {
@@ -90,6 +100,7 @@ public class Jugador {
                 fila++;
             }
         }
+        String mensajeEscalera = getEscalera();
         mensaje += mensajeEscalera;
         return mensaje;
     }
